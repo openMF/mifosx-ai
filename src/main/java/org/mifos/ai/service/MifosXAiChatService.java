@@ -10,11 +10,11 @@ import java.util.Map;
 
 @Service
 @Slf4j
-public class AIChatService {
+public class MifosXAiChatService {
 
     private final ChatClient chatClient;
 
-    AIChatService(ChatClient.Builder builder){        
+    MifosXAiChatService(ChatClient.Builder builder){        
         this.chatClient = builder
                 .defaultSystem("You are an advanced Mifos X AI assistant. Use external tools when needed instead of making assumptions. "
                         + "Available tools: MifosFunction - Fetches real-time information for a given topic. "

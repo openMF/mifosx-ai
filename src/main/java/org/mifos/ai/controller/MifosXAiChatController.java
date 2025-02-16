@@ -1,7 +1,7 @@
 package org.mifos.ai.controller;
 
 
-import org.mifos.ai.service.AIChatService;
+import org.mifos.ai.service.MifosXAiChatService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,11 +10,11 @@ import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("/ai-chat")
-public class AIChatController {
+public class MifosXAiChatController {
 
-    private final AIChatService aiChatService;
+    private final MifosXAiChatService aiChatService;
 
-    public AIChatController(AIChatService aiChatService) {
+    public MifosXAiChatController(MifosXAiChatService aiChatService) {
         this.aiChatService = aiChatService;
     }
 
