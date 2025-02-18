@@ -21,6 +21,6 @@ FROM azul/zulu-openjdk-alpine:21 AS mifos
 
 RUN mkdir /opt/app
 
-COPY target/mifosx-ai-0.0.1-SNAPSHOT.jarr /opt/app
+COPY target/mifosx-ai-0.0.1-SNAPSHOT.jar /opt/app
 
 CMD ["java", "-jar", "-Djava.security.egd=file:/dev/./urandom", "/opt/app/mifosx-ai-0.0.1-SNAPSHOT.jar"]
