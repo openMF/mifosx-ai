@@ -1,15 +1,17 @@
 package org.mifos.ai.controller;
 
 
+import org.mifos.ai.dto.ChatInteraction;
 import org.mifos.ai.service.MifosXAiChatService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
 @RestController
-@RequestMapping("/ai-chat")
+@CrossOrigin(origins =  "*")
 public class MifosXAiChatController {
 
     private final MifosXAiChatService aiChatService;
@@ -19,9 +21,17 @@ public class MifosXAiChatController {
     }
 
 
-    @GetMapping
-    public Flux<String> getAIChatResponse(@RequestParam String message) {
-        return aiChatService.getAIResponse(message);
+    @PostMapping(path = "/message",
+                consumes = MediaType.APPLICATION_JSON_VALUE,
+                produces = MediaType.APPLICATION_NDJSON_VALUE)
+    public Flux<String> getAIChatResponse(@RequestBody ChatInteraction chatInteraction) {
+        if(chatInteraction.getMessages().get(0).getRole().equalsIgnoreCase("assistant")){
+            Flux<String> response = Flux.just("Hello", "How can I help you?");
+            return response;
+        }
+        else {
+            return aiChatService.getAIResponse(chatInteraction.getMessages().get(0).getContent());
+        }
     }
 
 
