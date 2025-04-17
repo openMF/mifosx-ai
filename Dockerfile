@@ -17,7 +17,7 @@
 # under the License.
 # 
 
-FROM azul/zulu-openjdk-alpine:21.0.6 AS mifos
+FROM azul/zulu-openjdk-alpine:21.0.7 AS mifos
 
 RUN mkdir /opt/app
 
